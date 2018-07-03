@@ -1,0 +1,86 @@
+<h3>Lista de Produtos</h3>
+<div class="ui-g">
+    <div class="ui-g-6 ui-sm-12">
+        <p-panel [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+  
+            <p-dataScroller [value]="produtos" [rows]="10" [inline]="true" scrollHeight="500px">
+              <p-header>
+                  Produtos
+              </p-header>
+              <ng-template let-prod pTemplate="item">
+                  <div class="ui-g">
+                
+                       <div class="ui-g-2 ui-sm-2">
+                        <p-checkbox [(ngModel)]="prod.check" binary="true" (click)="addProduto(prod)"></p-checkbox>
+                        
+                      </div>
+                      <div class="ui-g-8 ui-sm-8">
+                          Produto: {{prod.dados.descricao}}<br/>
+                          Valor: R$ {{prod.dados.valor | number:'1.2-2'}}
+                         
+                      </div>
+                </div>
+              </ng-template>
+            </p-dataScroller>
+          </p-panel>
+    </div> 
+    
+    <div class="ui-g-6 ui-sm-12" *ngIf="prodSelecionados.length > 0">
+      <p-panel [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+  
+      <p-dataScroller [value]="prodSelecionados" [rows]="10" [inline]="true" scrollHeight="500px">
+        <p-header>
+                <div class="ui-g">
+                    <div class="ui-g-3 ui-sm-3">
+                        Produto 
+                    </div>
+        
+                    <div class="ui-g-6 ui-sm-8">
+                            
+                    </div>
+        
+                    <div class="ui-g-3 ui-sm-3">
+                         Preço
+                    </div>
+                  </div>
+        </p-header>
+        
+        <ng-template let-prod pTemplate="item">
+            <div class="ui-g">
+              
+                <div class="ui-g-3 ui-sm-3">
+                  {{prod.dados.descricao}}
+                  
+                </div>
+
+                <div class="ui-g-6 ui-sm-8">
+                    
+                </div>
+
+                <div class="ui-g-3 ui-sm-3">
+                    R$ {{prod.dados.valor | number:'1.2-2'}}
+                </div>
+          </div>
+        </ng-template>
+      </p-dataScroller>
+      <p-footer *ngIf="somaTotal > 0">
+          <div class="ui-g">
+              <div class="ui-g-3">          
+                  Valor Total:
+              </div>
+
+              <div class="ui-g-6">          
+                   
+              </div>
+
+              <div class="ui-g-3">          
+                     R$ {{somaTotal | number:'1.2-2'}}
+              </div>
+          </div>
+      </p-footer>
+  </p-panel>
+    </div>
+</div>
+
+
+
